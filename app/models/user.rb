@@ -35,4 +35,16 @@ class User < ApplicationRecord
   def following?(user)
     followings.include?(user)
   end
+  
+  def self.looks(content, method)
+    if method == "perfect_match"
+      @user = User.where("name LIKE?", "#{content}")
+    elsif method == "forward_match"
+      @user = User.where("name LIKE?","#{content}%")
+    elsif method == "backward_match"
+      @user = User.where("name LIKE?","%#{content}")
+    else
+      @user = User.where("name LIKE?","%#{content}%")
+    end
+  end
 end
