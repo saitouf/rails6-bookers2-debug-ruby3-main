@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'chats/show'
   get 'relationships/followings'
   get 'relationships/followers'
   get 'relationships/create'
@@ -19,4 +20,5 @@ Rails.application.routes.draw do
   end
   get "search" => "searches#search"
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+  resources :chats, only: [:show, :create]
 end
